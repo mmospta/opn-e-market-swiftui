@@ -12,6 +12,9 @@
 		8DA72DEC2833F94D0043CA71 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA72DEB2833F94D0043CA71 /* Product.swift */; };
 		8DA72DEE2833F9560043CA71 /* Order.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA72DED2833F9560043CA71 /* Order.swift */; };
 		8DA72DF02833F9A00043CA71 /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA72DEF2833F9A00043CA71 /* APIError.swift */; };
+		8DA72DF32833FB330043CA71 /* StoreAndProductsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA72DF22833FB330043CA71 /* StoreAndProductsView.swift */; };
+		8DA72DF52833FB580043CA71 /* StoreAndProductsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA72DF42833FB580043CA71 /* StoreAndProductsViewModel.swift */; };
+		8DA72DF72833FE480043CA71 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA72DF62833FE480043CA71 /* LoadingView.swift */; };
 		8DBF0C4E2833DE26008A3191 /* e_marketApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DBF0C4D2833DE26008A3191 /* e_marketApp.swift */; };
 		8DBF0C502833DE26008A3191 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DBF0C4F2833DE26008A3191 /* ContentView.swift */; };
 		8DBF0C522833DE26008A3191 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8DBF0C512833DE26008A3191 /* Assets.xcassets */; };
@@ -44,6 +47,9 @@
 		8DA72DEB2833F94D0043CA71 /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 		8DA72DED2833F9560043CA71 /* Order.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Order.swift; sourceTree = "<group>"; };
 		8DA72DEF2833F9A00043CA71 /* APIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
+		8DA72DF22833FB330043CA71 /* StoreAndProductsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreAndProductsView.swift; sourceTree = "<group>"; };
+		8DA72DF42833FB580043CA71 /* StoreAndProductsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreAndProductsViewModel.swift; sourceTree = "<group>"; };
+		8DA72DF62833FE480043CA71 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		8DBF0C4A2833DE26008A3191 /* e-market.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "e-market.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8DBF0C4D2833DE26008A3191 /* e_marketApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = e_marketApp.swift; sourceTree = "<group>"; };
 		8DBF0C4F2833DE26008A3191 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -94,6 +100,8 @@
 		8DA72DE32833F43C0043CA71 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				8DA72DF12833FB040043CA71 /* StoreAndProductsView */,
+				8DA72DF62833FE480043CA71 /* LoadingView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -101,6 +109,7 @@
 		8DA72DE42833F45C0043CA71 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				8DA72DF42833FB580043CA71 /* StoreAndProductsViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -119,6 +128,14 @@
 				8DA72DE72833F8E50043CA71 /* NetworkManager.swift */,
 			);
 			path = Services;
+			sourceTree = "<group>";
+		};
+		8DA72DF12833FB040043CA71 /* StoreAndProductsView */ = {
+			isa = PBXGroup;
+			children = (
+				8DA72DF22833FB330043CA71 /* StoreAndProductsView.swift */,
+			);
+			path = StoreAndProductsView;
 			sourceTree = "<group>";
 		};
 		8DBF0C412833DE26008A3191 = {
@@ -314,8 +331,11 @@
 			files = (
 				8DA72DEE2833F9560043CA71 /* Order.swift in Sources */,
 				8DA72DE82833F8E50043CA71 /* NetworkManager.swift in Sources */,
+				8DA72DF52833FB580043CA71 /* StoreAndProductsViewModel.swift in Sources */,
+				8DA72DF72833FE480043CA71 /* LoadingView.swift in Sources */,
 				8DBF0C502833DE26008A3191 /* ContentView.swift in Sources */,
 				8DA72DEC2833F94D0043CA71 /* Product.swift in Sources */,
+				8DA72DF32833FB330043CA71 /* StoreAndProductsView.swift in Sources */,
 				8DBF0C4E2833DE26008A3191 /* e_marketApp.swift in Sources */,
 				8DA72DEA2833F9450043CA71 /* Store.swift in Sources */,
 				8DA72DF02833F9A00043CA71 /* APIError.swift in Sources */,
