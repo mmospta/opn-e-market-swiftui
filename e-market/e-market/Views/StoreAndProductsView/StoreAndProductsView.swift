@@ -8,13 +8,51 @@
 import SwiftUI
 
 struct StoreAndProductsView: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+  
+  @EnvironmentObject var viewModel: StoreAndProductsViewModel
+  
+  var body: some View {
+    ZStack {
+      ScrollView(.vertical, showsIndicators: false) {
+        VStack {
+          ZStack(alignment: .topLeading) {
+            Image("arabica-coffee")
+              .resizable()
+              .scaledToFill()
+              .frame(width: UIScreen.main.bounds.width, height: 400)
+            Text(viewModel.store.name)
+              .font(.system(size: 14))
+              .fontWeight(.semibold)
+              .foregroundColor(.gray)
+              .padding(.vertical, 72)
+              .padding(.horizontal, 24)
+          }
+          
+          StoreDetailView()
+            .padding()
+          
+          ForEach(viewModel.products, id: \.id) { product in
+            ProductView(product: product)
+          }
+        }
+      }
+      .background(Style.Colors.background)
+      .ignoresSafeArea(.all, edges: [.top, .bottom])
+      .onAppear {
+        viewModel.getStoreInfo()
+        viewModel.getProducts()
+      }
+      
+      if viewModel.isLoading {
+        LoadingView()
+      }
     }
+  }
 }
 
 struct StoreAndProductsView_Previews: PreviewProvider {
-    static var previews: some View {
-        StoreAndProductsView()
-    }
+  static var previews: some View {
+    StoreAndProductsView()
+      .environmentObject(StoreAndProductsViewModel())
+  }
 }

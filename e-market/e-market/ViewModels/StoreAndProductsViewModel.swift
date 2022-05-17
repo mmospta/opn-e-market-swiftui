@@ -7,7 +7,7 @@
 
 import Foundation
 
-class StoreAndProductsViewModel {
+class StoreAndProductsViewModel: ObservableObject {
   
   @Published var store: Store = Store(name: "", rating: 5, openingTime: "", closingTime: "")
   @Published var products: [Product] = []
@@ -41,6 +41,14 @@ class StoreAndProductsViewModel {
         }
       }
     }
+  }
+  
+  func dateConvert(date: String) -> String {
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateFormat = "HH:mm:ss.SSSZ"
+    guard let date = dateFormatter.date(from: date) else { return "-"}
+    dateFormatter.timeStyle = .medium
+    return dateFormatter.string(from: date)
   }
   
 }

@@ -7,7 +7,8 @@
 
 import Foundation
 
-struct Product: Codable {
+struct Product: Codable, Identifiable {
+  let id = UUID()
   let name: String
   let price: Int
   let imageUrl: String
