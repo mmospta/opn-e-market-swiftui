@@ -71,6 +71,41 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8DA72DE22833F40B0043CA71 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		8DA72DE32833F43C0043CA71 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		8DA72DE42833F45C0043CA71 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		8DA72DE52833F6390043CA71 /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Utility;
+			sourceTree = "<group>";
+		};
+		8DA72DE62833F6700043CA71 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
 		8DBF0C412833DE26008A3191 = {
 			isa = PBXGroup;
 			children = (
@@ -94,6 +129,11 @@
 		8DBF0C4C2833DE26008A3191 /* e-market */ = {
 			isa = PBXGroup;
 			children = (
+				8DA72DE62833F6700043CA71 /* Services */,
+				8DA72DE52833F6390043CA71 /* Utility */,
+				8DA72DE42833F45C0043CA71 /* ViewModels */,
+				8DA72DE32833F43C0043CA71 /* Views */,
+				8DA72DE22833F40B0043CA71 /* Models */,
 				8DBF0C4D2833DE26008A3191 /* e_marketApp.swift */,
 				8DBF0C4F2833DE26008A3191 /* ContentView.swift */,
 				8DBF0C512833DE26008A3191 /* Assets.xcassets */,
