@@ -7,9 +7,13 @@
 
 import Foundation
 
-class NetworkManager {
-  
-  static let shared = NetworkManager()
+protocol NetworkManagerProtocol {
+  func getStoreInfo(_ completion: @escaping (Result<Store, APIError>) -> Void)
+  func getProducts(_ completion: @escaping (Result<[Product], APIError>) -> Void)
+  func postOrder(order: Order, _ completion: @escaping (Result<Void, APIError>) -> Void)
+}
+
+class NetworkManager: NetworkManagerProtocol {
   
   enum EndPoint: String {
     case getStoreInfo = "https://c8d92d0a-6233-4ef7-a229-5a91deb91ea1.mock.pstmn.io/storeInfo"
