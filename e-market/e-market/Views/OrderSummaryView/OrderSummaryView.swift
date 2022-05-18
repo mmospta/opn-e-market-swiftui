@@ -13,33 +13,33 @@ struct OrderSummaryView: View {
   var cart: Cart = Cart(total: 0, selectProducts: [])
   
   var body: some View {
-      List {
-        Section {
-          ForEach(viewModel.selectedProduct, id: \.id) { selectedProduct in
-            CartRow(selectedProduct: selectedProduct)
-          }
+    List {
+      Section {
+        ForEach(viewModel.selectedProduct, id: \.id) { selectedProduct in
+          CartRow(selectedProduct: selectedProduct)
         }
-        
-        Section {
-          DeliveryAddressView()
-        }
-        
-        Section {
-          SummaryView(rootIsActive: $rootIsActive)
-            .listRowBackground(Color.clear)
-        }
-        .buttonStyle(.plain)
-        .listRowSeparator(.hidden)
+      }
+      
+      Section {
+        DeliveryAddressView()
+      }
+      
+      Section {
+        SummaryView(rootIsActive: $rootIsActive)
+          .listRowBackground(Color.clear)
       }
       .buttonStyle(.plain)
-      .listStyle(.plain)
-      .navigationTitle("Order summary")
-      .padding(.vertical)
-      .onAppear {
-        viewModel.selectedProduct = cart.selectProducts
-        viewModel.total = cart.total
-      }
+      .listRowSeparator(.hidden)
     }
+    .buttonStyle(.plain)
+    .listStyle(.plain)
+    .navigationTitle("Order summary")
+    .padding(.vertical)
+    .onAppear {
+      viewModel.selectedProduct = cart.selectProducts
+      viewModel.total = cart.total
+    }
+  }
 }
 
 struct OrderSummaryView_Previews: PreviewProvider {

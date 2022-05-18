@@ -26,7 +26,6 @@ struct SummaryView: View {
           .foregroundColor(.black)
       }
       
-      
       NavigationLink(isActive: $isActive) {
         OrderSuccessView(shouldPopToRootView: $rootIsActive)
       } label: {

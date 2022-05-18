@@ -8,32 +8,42 @@
 import Foundation
 
 class OrderSummaryViewModel: ObservableObject {
+  
   @Published var selectedProduct: [SelectedProduct] = []
   @Published var isDisableBtn: Bool = true
   @Published var total: Int = 0
   
   var deliveryAddress: String = ""
   var products: [Product] = []
+  var error = false
+  
+  private let networkManager: NetworkManagerProtocol
+  
+  init(networkManager: NetworkManagerProtocol = NetworkManager()) {
+    self.networkManager = networkManager
+  }
+  
+  func postOrder(order: Order) {
+    networkManager.postOrder(order: order) { result in
+      DispatchQueue.main.async {
+        switch result {
+        case .success():
+          print("success")
+        case .failure(let error):
+          print(error)
+        }
+      }
+    }
+  }
   
   func checkout() {
     guard !selectedProduct.isEmpty, !deliveryAddress.isEmpty else { return }
-
+    
     for selected in selectedProduct {
       products.append(selected.product)
     }
     let order: Order = Order(products: products, deliveryAddress: deliveryAddress)
     postOrder(order: order)
-  }
-  
-  func postOrder(order: Order) {
-    NetworkManager.shared.postOrder(order: order) { result in
-      switch result {
-      case .success():
-        print("success")
-      case .failure(let error):
-        print(error)
-      }
-    }
   }
   
   func deliveryAddress(address: String) {
@@ -44,18 +54,6 @@ class OrderSummaryViewModel: ObservableObject {
       deliveryAddress = address
       isDisableBtn = false
     }
-    print(deliveryAddress)
   }
-  
-  func calculateRowTotalPrice() {
-    
-    
-  }
-  
-  
-  func calculateTotalPrice() {
-    
-  }
-  
   
 }

@@ -17,11 +17,18 @@ class StoreAndProductsViewModel: ObservableObject {
   
   var cart: Cart = Cart(total: 0, selectProducts: [])
   var selectedProduct: [SelectedProduct] = []
+  var error = false
+  
+  private let networkManager: NetworkManagerProtocol
+  
+  init(networkManager: NetworkManagerProtocol = NetworkManager()) {
+    self.networkManager = networkManager
+  }
   
   func getStoreInfo() {
     isLoading = true
-    NetworkManager.shared.getStoreInfo { [weak self] result in
-      DispatchQueue.main.async { [self] in
+    networkManager.getStoreInfo { [weak self] result in
+      DispatchQueue.main.async {
         self?.isLoading = false
         switch result {
         case .success(let store):
@@ -35,8 +42,8 @@ class StoreAndProductsViewModel: ObservableObject {
   
   func getProducts() {
     isLoading = true
-    NetworkManager.shared.getProducts { [weak self] result in
-      DispatchQueue.main.async { [self] in
+    networkManager.getProducts { [weak self] result in
+      DispatchQueue.main.async {
         self?.isLoading = false
         switch result {
         case .success(let products):
@@ -52,7 +59,7 @@ class StoreAndProductsViewModel: ObservableObject {
     let dateFormatter = DateFormatter()
     dateFormatter.dateFormat = "HH:mm:ss.SSSZ"
     guard let date = dateFormatter.date(from: date) else { return "-"}
-    dateFormatter.timeStyle = .medium
+    dateFormatter.timeStyle = .short
     return dateFormatter.string(from: date)
   }
   
@@ -61,11 +68,11 @@ class StoreAndProductsViewModel: ObservableObject {
       let rowTotalPrice = calculateTotalPriceOfRow(price: product.price, quantity: quantity)
       selectedProduct.append(SelectedProduct(id: product.id, product: product, quantity: quantity, totalPrice: rowTotalPrice))
       disableAddToBagButton()
-      print(selectedProduct)
     } else {
       if let index = selectedProduct.firstIndex(where: { $0.id == product.id }) {
         selectedProduct.remove(at: index)
         disableAddToBagButton()
+        calculateTotalPrice()
       }
     }
   }
@@ -74,10 +81,8 @@ class StoreAndProductsViewModel: ObservableObject {
     if isSelect, let index = selectedProduct.firstIndex(where: { $0.id == product.id }) {
       selectedProduct[index].quantity = quantity
       let rowTotalPrice = calculateTotalPriceOfRow(price: product.price, quantity: quantity)
-      print(rowTotalPrice)
       selectedProduct[index].totalPrice = rowTotalPrice
       disableAddToBagButton()
-      print(selectedProduct)
     }
   }
   
@@ -111,4 +116,5 @@ class StoreAndProductsViewModel: ObservableObject {
   func clearTotalPrice() {
     totalPrice = 0
   }
+  
 }

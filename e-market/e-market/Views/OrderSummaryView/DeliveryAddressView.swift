@@ -11,31 +11,31 @@ struct DeliveryAddressView: View {
   @EnvironmentObject var viewModel: OrderSummaryViewModel
   @State var deliveryAddress: String = ""
   
-    var body: some View {
-      VStack(alignment: .leading, spacing: 16) {
-        Text("Delivery Address:")
-          .font(.system(size: 16))
-          .fontWeight(.bold)
-          .lineLimit(0)
-          .foregroundColor(.gray)
-        Text("\(deliveryAddress)")
-          .font(.system(size: 14))
-          .fontWeight(.bold)
-          .lineLimit(0)
-          .foregroundColor(.gray)
-        TextField("Please fill delivery address", text: $deliveryAddress)
-          .textFieldStyle(.plain)
-          .lineLimit(0)
-          .onChange(of: deliveryAddress) { address in
-            viewModel.deliveryAddress(address: address)
-          }
-      }
+  var body: some View {
+    VStack(alignment: .leading, spacing: 16) {
+      Text("Delivery Address:")
+        .font(.system(size: 16))
+        .fontWeight(.bold)
+        .lineLimit(0)
+        .foregroundColor(.gray)
+      Text("\(deliveryAddress)")
+        .font(.system(size: 14))
+        .fontWeight(.bold)
+        .lineLimit(0)
+        .foregroundColor(.gray)
+      TextField("Please fill delivery address", text: $deliveryAddress)
+        .textFieldStyle(.plain)
+        .lineLimit(0)
+        .onChange(of: deliveryAddress) { address in
+          viewModel.deliveryAddress(address: address)
+        }
     }
+  }
 }
 
 struct DeliveryAddressView_Previews: PreviewProvider {
-    static var previews: some View {
-        DeliveryAddressView()
-        .padding()
-    }
+  static var previews: some View {
+    DeliveryAddressView()
+      .padding()
+  }
 }
