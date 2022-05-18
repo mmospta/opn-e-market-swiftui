@@ -53,7 +53,7 @@ struct ProductView: View {
           print("-")
           if counter > 1 {
             counter -= 1
-            viewModel.changeQuantity(isSelect: isSelect, id: product.id, quantity: counter)
+            viewModel.changeQuantity(isSelect: isSelect, product: product, quantity: counter)
           }
         } label: {
           Image(systemName: "minus.circle.fill")
@@ -72,7 +72,7 @@ struct ProductView: View {
           print("+")
           if counter < 100 {
             counter += 1
-            viewModel.changeQuantity(isSelect: isSelect, id: product.id, quantity: counter)
+            viewModel.changeQuantity(isSelect: isSelect, product: product, quantity: counter)
           }
         } label: {
           Image(systemName: "plus.circle.fill")

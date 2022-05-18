@@ -7,8 +7,14 @@
 
 import Foundation
 
+struct Cart {
+  var total: Int
+  var selectProducts: [SelectedProduct]
+}
+
 struct SelectedProduct {
   let id: UUID
   var product: Product
   var quantity: Int
+  var totalPrice: Int
 }

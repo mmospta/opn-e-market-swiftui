@@ -44,6 +44,7 @@ struct StoreAndProductsView: View {
         .ignoresSafeArea(.all, edges: [.top])
         .onAppear {
           viewModel.clearSelectedProductData()
+          viewModel.clearTotalPrice()
           viewModel.getStoreInfo()
           viewModel.getProducts()
         }
@@ -57,6 +58,7 @@ struct StoreAndProductsView: View {
       .navigationBarHidden(true)
       .navigationBarBackButtonHidden(true)
     }
+    .accentColor(.brown)
   }
 }
 

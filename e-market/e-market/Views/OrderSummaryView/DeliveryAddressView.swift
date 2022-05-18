@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct DeliveryAddressView: View {
+  @EnvironmentObject var viewModel: OrderSummaryViewModel
   @State var deliveryAddress: String = ""
   
     var body: some View {
@@ -25,6 +26,9 @@ struct DeliveryAddressView: View {
         TextField("Please fill delivery address", text: $deliveryAddress)
           .textFieldStyle(.plain)
           .lineLimit(0)
+          .onChange(of: deliveryAddress) { address in
+            viewModel.deliveryAddress(address: address)
+          }
       }
     }
 }

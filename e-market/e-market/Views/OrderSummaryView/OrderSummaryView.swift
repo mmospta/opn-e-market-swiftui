@@ -10,7 +10,7 @@ import SwiftUI
 struct OrderSummaryView: View {
   @EnvironmentObject var viewModel: OrderSummaryViewModel
   @Binding var rootIsActive : Bool
-  var selectedProduct: [SelectedProduct] = []
+  var cart: Cart = Cart(total: 0, selectProducts: [])
   
   var body: some View {
       List {
@@ -36,7 +36,8 @@ struct OrderSummaryView: View {
       .navigationTitle("Order summary")
       .padding(.vertical)
       .onAppear {
-        viewModel.selectedProduct = selectedProduct
+        viewModel.selectedProduct = cart.selectProducts
+        viewModel.total = cart.total
       }
     }
 }

@@ -30,7 +30,7 @@ struct AddToBagView: View {
         }
         
         NavigationLink(isActive: $isActive) {
-          OrderSummaryView(rootIsActive: $isActive, selectedProduct: viewModel.selectedProduct)
+          OrderSummaryView(rootIsActive: $isActive, cart: viewModel.cart)
             .environmentObject(OrderSummaryViewModel())
         } label: {
           HStack {
@@ -39,7 +39,7 @@ struct AddToBagView: View {
               .fontWeight(.semibold)
             Divider()
               .background(.white)
-            Text("$ 10")
+            Text("$ \(viewModel.totalPrice)")
               .font(.system(size: 20))
               .fontWeight(.semibold)
           }

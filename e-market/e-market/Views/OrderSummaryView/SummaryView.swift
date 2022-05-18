@@ -8,7 +8,9 @@
 import SwiftUI
 
 struct SummaryView: View {
+  @EnvironmentObject var viewModel: OrderSummaryViewModel
   @Binding var rootIsActive : Bool
+  @State var isActive = false
   
   var body: some View {
     VStack(spacing: 20) {
@@ -18,45 +20,35 @@ struct SummaryView: View {
           .fontWeight(.bold)
           .foregroundColor(.black)
         Spacer()
-        Text("$ 80")
+        Text("$ \(viewModel.total)")
           .font(.system(size: 18))
           .fontWeight(.bold)
           .foregroundColor(.black)
       }
       
-      NavigationLink {
+      
+      NavigationLink(isActive: $isActive) {
         OrderSuccessView(shouldPopToRootView: $rootIsActive)
       } label: {
-        HStack {
-          Spacer()
-          Text("Checkout")
-            .font(.system(size: 18))
-            .fontWeight(.semibold)
-            .foregroundColor(.white)
-          Spacer()
+        Button {
+          viewModel.checkout()
+          isActive = true
+        } label: {
+          HStack {
+            Spacer()
+            Text("Checkout")
+              .font(.system(size: 18))
+              .fontWeight(.semibold)
+              .foregroundColor(.white)
+            Spacer()
+          }
         }
       }
-      //        .disabled(true)
+      .disabled(viewModel.isDisableBtn)
       .padding()
       .frame(maxWidth: .infinity)
-      .background(.blue)
+      .background(Style.Colors.textBrown)
       .cornerRadius(8)
-      
-      //        Button {
-      //          print("Checkout")
-      
-      //          self.mode.wrappedValue.dismiss()
-      //        } label: {
-      //          Text("Checkout")
-      //            .font(.system(size: 18))
-      //            .fontWeight(.semibold)
-      //            .foregroundColor(.white)
-      //
-      //        }
-      //        .padding()
-      //        .frame(maxWidth: .infinity)
-      //        .background(.blue)
-      //        .cornerRadius(8)
     }
   }
 }

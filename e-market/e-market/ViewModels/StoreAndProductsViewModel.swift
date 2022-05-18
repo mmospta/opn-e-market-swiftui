@@ -13,6 +13,10 @@ class StoreAndProductsViewModel: ObservableObject {
   @Published var products: [Product] = []
   @Published var isLoading: Bool = false
   @Published var isDisableBtn: Bool = true
+  @Published var totalPrice: Int = 0
+  
+  var cart: Cart = Cart(total: 0, selectProducts: [])
+  var selectedProduct: [SelectedProduct] = []
   
   func getStoreInfo() {
     isLoading = true
@@ -52,12 +56,12 @@ class StoreAndProductsViewModel: ObservableObject {
     return dateFormatter.string(from: date)
   }
   
-  var selectedProduct: [SelectedProduct] = []
-  
   func selectedOrderCheckBox(isSelect: Bool, product: Product, quantity: Int) {
     if isSelect {
       print("yes")
-      selectedProduct.append(SelectedProduct(id: product.id, product: product, quantity: quantity))
+      let rowTotalPrice = calculateTotalPriceOfRow(price: product.price, quantity: quantity)
+      print(rowTotalPrice)
+      selectedProduct.append(SelectedProduct(id: product.id, product: product, quantity: quantity, totalPrice: rowTotalPrice))
       disableAddToBagButton()
       print(selectedProduct)
     } else {
@@ -70,9 +74,12 @@ class StoreAndProductsViewModel: ObservableObject {
     }
   }
   
-  func changeQuantity(isSelect: Bool, id: UUID, quantity: Int) {
-    if isSelect, let index = selectedProduct.firstIndex(where: { $0.id == id }) {
+  func changeQuantity(isSelect: Bool, product: Product, quantity: Int) {
+    if isSelect, let index = selectedProduct.firstIndex(where: { $0.id == product.id }) {
       selectedProduct[index].quantity = quantity
+      let rowTotalPrice = calculateTotalPriceOfRow(price: product.price, quantity: quantity)
+      print(rowTotalPrice)
+      selectedProduct[index].totalPrice = rowTotalPrice
       disableAddToBagButton()
       print(selectedProduct)
     }
@@ -81,6 +88,7 @@ class StoreAndProductsViewModel: ObservableObject {
   func disableAddToBagButton() {
     if !selectedProduct.isEmpty {
       isDisableBtn = false
+      calculateTotalPrice()
     } else {
       isDisableBtn = true
     }
@@ -89,5 +97,22 @@ class StoreAndProductsViewModel: ObservableObject {
   func clearSelectedProductData() {
     selectedProduct = []
     isDisableBtn = true
+  }
+  
+  func calculateTotalPriceOfRow(price: Int, quantity: Int) -> Int {
+    return price * quantity
+  }
+  
+  func calculateTotalPrice() {
+    var total = 0
+    for product in selectedProduct {
+      total += product.totalPrice
+    }
+    totalPrice = total
+    cart = Cart(total: total, selectProducts: selectedProduct)
+  }
+  
+  func clearTotalPrice() {
+    totalPrice = 0
   }
 }

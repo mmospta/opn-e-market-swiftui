@@ -41,7 +41,7 @@ struct CartRow: View {
         
         Spacer()
         
-        Text("$80")
+        Text("$\(selectedProduct.totalPrice)")
           .font(.system(size: 18))
           .fontWeight(.bold)
           .foregroundColor(.black)
@@ -52,7 +52,7 @@ struct CartRow: View {
 
 struct CartRow_Previews: PreviewProvider {
   static var previews: some View {
-    CartRow(selectedProduct: SelectedProduct(id: UUID(), product: Product(name: "Dark Tiramisu", price: 100, imageUrl: "https://www.nespresso.com/shared_res/mos/free_html/sg/b2b/b2ccoffeerecipes/listing-image/image/dark-tiramisu-mocha.jpg"), quantity: 3))
+    CartRow(selectedProduct: SelectedProduct(id: UUID(), product: Product(name: "Dark Tiramisu", price: 100, imageUrl: "https://www.nespresso.com/shared_res/mos/free_html/sg/b2b/b2ccoffeerecipes/listing-image/image/dark-tiramisu-mocha.jpg"), quantity: 3, totalPrice: 200))
       .padding()
   }
 }

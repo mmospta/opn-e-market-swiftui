@@ -28,7 +28,7 @@ struct OrderSuccessView: View {
       } label: {
         Text("back to home")
       }
-      
+      .navigationBarBackButtonHidden(true)
     }
   }
 }
