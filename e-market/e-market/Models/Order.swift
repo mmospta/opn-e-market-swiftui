@@ -8,7 +8,7 @@
 import Foundation
 
 struct Order: Codable {
-  let products: [Product]
+  let products: [OrderProduct]
   let deliveryAddress: String
   
   enum CodingKeys: String, CodingKey {

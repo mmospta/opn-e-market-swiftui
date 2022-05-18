@@ -42,7 +42,9 @@ class OrderSummaryViewModel: ObservableObject {
     for selected in selectedProduct {
       products.append(selected.product)
     }
-    let order: Order = Order(products: products, deliveryAddress: deliveryAddress)
+    
+    let orderProducts = products.map { OrderProduct(name: $0.name, price: $0.price, imageUrl: $0.imageUrl) }
+    let order: Order = Order(products: orderProducts, deliveryAddress: deliveryAddress)
     postOrder(order: order)
   }
   
