@@ -14,7 +14,6 @@ protocol NetworkManagerProtocol {
 }
 
 class NetworkManager: NetworkManagerProtocol {
-  
   enum EndPoint: String {
     case getStoreInfo = "https://c8d92d0a-6233-4ef7-a229-5a91deb91ea1.mock.pstmn.io/storeInfo"
     case getProducts = "https://c8d92d0a-6233-4ef7-a229-5a91deb91ea1.mock.pstmn.io/products"
@@ -59,40 +58,40 @@ class NetworkManager: NetworkManagerProtocol {
   }
   
   func getProducts(_ completion: @escaping (Result<[Product], APIError>) -> Void) {
-      guard let url = URL(string: EndPoint.getProducts.rawValue) else {
-        completion(.failure(.invalidURL))
+    guard let url = URL(string: EndPoint.getProducts.rawValue) else {
+      completion(.failure(.invalidURL))
+      return
+    }
+    
+    var request = URLRequest(url: url)
+    request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+    request.httpMethod = "GET"
+    
+    let task = URLSession.shared.dataTask(with: request) { data, response, error in
+      if let _ =  error {
+        completion(.failure(.unableToComplete))
         return
       }
       
-      var request = URLRequest(url: url)
-      request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-      request.httpMethod = "GET"
-      
-      let task = URLSession.shared.dataTask(with: request) { data, response, error in
-        if let _ =  error {
-          completion(.failure(.unableToComplete))
-          return
-        }
-        
-        guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
-          completion(.failure(.invalidResponse))
-          return
-        }
-        
-        guard let data = data else {
-          completion(.failure(.invalidData))
-          return
-        }
-        
-        do {
-          let decoder = JSONDecoder()
-          let decodedResponse = try decoder.decode([Product].self, from: data)
-          completion(.success(decodedResponse))
-        } catch {
-          completion(.failure(.invalidData))
-        }
+      guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
+        completion(.failure(.invalidResponse))
+        return
       }
-      task.resume()
+      
+      guard let data = data else {
+        completion(.failure(.invalidData))
+        return
+      }
+      
+      do {
+        let decoder = JSONDecoder()
+        let decodedResponse = try decoder.decode([Product].self, from: data)
+        completion(.success(decodedResponse))
+      } catch {
+        completion(.failure(.invalidData))
+      }
+    }
+    task.resume()
   }
   
   func postOrder(order: Order, _ completion: @escaping (Result<Void, APIError>) -> Void) {
@@ -129,5 +128,4 @@ class NetworkManager: NetworkManagerProtocol {
     }
     task.resume()
   }
-  
 }

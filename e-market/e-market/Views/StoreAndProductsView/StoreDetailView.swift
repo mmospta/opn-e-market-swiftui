@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct StoreDetailView: View {
-  
   @EnvironmentObject var viewModel: StoreAndProductsViewModel
   
   var body: some View {

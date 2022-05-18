@@ -8,7 +8,6 @@
 import Foundation
 
 class OrderSummaryViewModel: ObservableObject {
-  
   @Published var selectedProduct: [SelectedProduct] = []
   @Published var isDisableBtn: Bool = true
   @Published var total: Int = 0
@@ -57,5 +56,4 @@ class OrderSummaryViewModel: ObservableObject {
       isDisableBtn = false
     }
   }
-  
 }

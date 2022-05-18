@@ -9,7 +9,6 @@ import XCTest
 @testable import e_market
 
 class OrderSummaryViewModelTests: XCTestCase {
-  
   var viewModel: OrderSummaryViewModel!
   var mockNetworkManager: MockNetworkManager!
   
@@ -29,5 +28,4 @@ class OrderSummaryViewModelTests: XCTestCase {
     
     XCTAssertFalse(viewModel.isDisableBtn)
   }
-  
 }

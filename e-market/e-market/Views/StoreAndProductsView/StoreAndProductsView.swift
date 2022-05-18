@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct StoreAndProductsView: View {
-  
   @EnvironmentObject var viewModel: StoreAndProductsViewModel
   @State var isActive : Bool = false
   

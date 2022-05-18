@@ -9,7 +9,6 @@ import XCTest
 @testable import e_market
 
 class StoreAndProductsViewModelTests: XCTestCase {
-  
   var viewModel: StoreAndProductsViewModel!
   var mockNetworkManager: MockNetworkManager!
   
@@ -87,7 +86,7 @@ class StoreAndProductsViewModelTests: XCTestCase {
       SelectedProduct(id: UUID(), product: Product(name: "", price: 1, imageUrl: ""), quantity: 1, totalPrice: 80)
     ]
     viewModel.selectedProduct = selectedProduct
-
+    
     viewModel.calculateTotalPrice()
     
     XCTAssertEqual(viewModel.totalPrice, 180)
@@ -98,7 +97,4 @@ class StoreAndProductsViewModelTests: XCTestCase {
     
     XCTAssertEqual(viewModel.totalPrice, 0)
   }
-
-  
-  
 }

@@ -8,7 +8,6 @@
 import Foundation
 
 class StoreAndProductsViewModel: ObservableObject {
-  
   @Published var store: Store = Store(name: "", rating: 5, openingTime: "", closingTime: "")
   @Published var products: [Product] = []
   @Published var isLoading: Bool = false
@@ -116,5 +115,4 @@ class StoreAndProductsViewModel: ObservableObject {
   func clearTotalPrice() {
     totalPrice = 0
   }
-  
 }
