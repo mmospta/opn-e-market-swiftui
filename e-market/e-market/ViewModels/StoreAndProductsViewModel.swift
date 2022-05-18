@@ -58,19 +58,15 @@ class StoreAndProductsViewModel: ObservableObject {
   
   func selectedOrderCheckBox(isSelect: Bool, product: Product, quantity: Int) {
     if isSelect {
-      print("yes")
       let rowTotalPrice = calculateTotalPriceOfRow(price: product.price, quantity: quantity)
-      print(rowTotalPrice)
       selectedProduct.append(SelectedProduct(id: product.id, product: product, quantity: quantity, totalPrice: rowTotalPrice))
       disableAddToBagButton()
       print(selectedProduct)
     } else {
-      print("no")
       if let index = selectedProduct.firstIndex(where: { $0.id == product.id }) {
         selectedProduct.remove(at: index)
         disableAddToBagButton()
       }
-      print(selectedProduct)
     }
   }
   

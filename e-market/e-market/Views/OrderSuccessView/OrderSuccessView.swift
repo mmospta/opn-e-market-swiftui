@@ -8,27 +8,32 @@
 import SwiftUI
 
 struct OrderSuccessView: View {
-//  @Environment(\.presentationMode) var mode: Binding<PresentationMode>
   @Binding var shouldPopToRootView : Bool
   
   var body: some View {
-    VStack {
+    VStack(spacing: 10) {
       Text("Order success")
-        .font(.system(size: 24))
+        .font(.system(size: 26))
         .fontWeight(.bold)
-      Image(systemName: "shippingbox.circle.fill")
+        .foregroundColor(Style.Colors.dark)
+      Image("delivery")
         .resizable()
         .aspectRatio(contentMode: .fit)
-        .frame(width: 100)
+        .frame(width: 400)
         .foregroundColor(.brown)
       Button {
         self.shouldPopToRootView = false
-        print("back")
-//        self.mode.wrappedValue.dismiss()
       } label: {
-        Text("back to home")
+        Text("Back To Store")
+          .font(.system(size: 18))
+          .fontWeight(.semibold)
+          .foregroundColor(.white)
+          .padding()
+          .background(Style.Colors.textBrown)
+          .cornerRadius(8)
       }
       .navigationBarBackButtonHidden(true)
+      .padding()
     }
   }
 }
