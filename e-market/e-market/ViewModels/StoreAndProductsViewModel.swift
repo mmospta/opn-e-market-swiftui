@@ -12,6 +12,7 @@ class StoreAndProductsViewModel: ObservableObject {
   @Published var store: Store = Store(name: "", rating: 5, openingTime: "", closingTime: "")
   @Published var products: [Product] = []
   @Published var isLoading: Bool = false
+  @Published var isDisableBtn: Bool = true
   
   func getStoreInfo() {
     isLoading = true
@@ -51,24 +52,42 @@ class StoreAndProductsViewModel: ObservableObject {
     return dateFormatter.string(from: date)
   }
   
-  var quantity: Int = 0
-  var counter: Int = 0
+  var selectedProduct: [SelectedProduct] = []
   
-//  func add(id: UUID, quantity:  Int, counter: Int) {
-//    print(id)
-//    if counter < 100 {
-//      feedback.impactOccurred()
-//      counter += 1
-//    }
-//  }
-//  
-//  func minus(id: UUID, quantity: Int, counter: Int) {
-//    print(quantity)
-//    if counter > 0 {
-//      counter -= 1
-//    }
-//  }
+  func selectedOrderCheckBox(isSelect: Bool, product: Product, quantity: Int) {
+    if isSelect {
+      print("yes")
+      selectedProduct.append(SelectedProduct(id: product.id, product: product, quantity: quantity))
+      disableAddToBagButton()
+      print(selectedProduct)
+    } else {
+      print("no")
+      if let index = selectedProduct.firstIndex(where: { $0.id == product.id }) {
+        selectedProduct.remove(at: index)
+        disableAddToBagButton()
+      }
+      print(selectedProduct)
+    }
+  }
   
+  func changeQuantity(isSelect: Bool, id: UUID, quantity: Int) {
+    if isSelect, let index = selectedProduct.firstIndex(where: { $0.id == id }) {
+      selectedProduct[index].quantity = quantity
+      disableAddToBagButton()
+      print(selectedProduct)
+    }
+  }
   
+  func disableAddToBagButton() {
+    if !selectedProduct.isEmpty {
+      isDisableBtn = false
+    } else {
+      isDisableBtn = true
+    }
+  }
   
+  func clearSelectedProductData() {
+    selectedProduct = []
+    isDisableBtn = true
+  }
 }

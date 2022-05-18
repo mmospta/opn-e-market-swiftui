@@ -9,18 +9,17 @@ import SwiftUI
 
 struct ProductView: View {
   @EnvironmentObject var viewModel: StoreAndProductsViewModel
-  @State private var counter: Int = 0
+  @State private var counter: Int = 1
   @State private var isSelect = false
   
   let product: Product
   
   var body: some View {
     HStack(spacing: 12) {
-//      Image("checkmark.square.fill")
-//        .resizable()
-//        .frame(width: 20, height: 20)
-//        .foregroundColor(Style.Colors.grayb)
       Toggle("", isOn: $isSelect)
+        .onChange(of: isSelect) { newValue in
+          viewModel.selectedOrderCheckBox(isSelect: newValue, product: product, quantity: counter)
+        }
         .labelsHidden()
         .toggleStyle(CheckboxToggleStyle())
         .foregroundColor(Style.Colors.grayb)
@@ -52,8 +51,9 @@ struct ProductView: View {
       HStack(spacing: 12) {
         Button {
           print("-")
-          if counter > 0 {
+          if counter > 1 {
             counter -= 1
+            viewModel.changeQuantity(isSelect: isSelect, id: product.id, quantity: counter)
           }
         } label: {
           Image(systemName: "minus.circle.fill")
@@ -72,6 +72,7 @@ struct ProductView: View {
           print("+")
           if counter < 100 {
             counter += 1
+            viewModel.changeQuantity(isSelect: isSelect, id: product.id, quantity: counter)
           }
         } label: {
           Image(systemName: "plus.circle.fill")

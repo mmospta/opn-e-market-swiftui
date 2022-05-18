@@ -13,6 +13,8 @@
 		8D7E87C92834C83700E0139F /* CartRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D7E87C82834C83700E0139F /* CartRow.swift */; };
 		8D7E87CB2834CB0D00E0139F /* SummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D7E87CA2834CB0D00E0139F /* SummaryView.swift */; };
 		8D7E87CD2834CCE900E0139F /* DeliveryAddressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D7E87CC2834CCE900E0139F /* DeliveryAddressView.swift */; };
+		8D7E87D02834D03500E0139F /* OrderSuccessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D7E87CF2834D03500E0139F /* OrderSuccessView.swift */; };
+		8D7E87D228350A8D00E0139F /* Cart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D7E87D128350A8D00E0139F /* Cart.swift */; };
 		8D91C870283438A000F5DA05 /* AddToBagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D91C86F283438A000F5DA05 /* AddToBagView.swift */; };
 		8DA72DE82833F8E50043CA71 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA72DE72833F8E50043CA71 /* NetworkManager.swift */; };
 		8DA72DEA2833F9450043CA71 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA72DE92833F9450043CA71 /* Store.swift */; };
@@ -59,6 +61,8 @@
 		8D7E87C82834C83700E0139F /* CartRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartRow.swift; sourceTree = "<group>"; };
 		8D7E87CA2834CB0D00E0139F /* SummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryView.swift; sourceTree = "<group>"; };
 		8D7E87CC2834CCE900E0139F /* DeliveryAddressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryAddressView.swift; sourceTree = "<group>"; };
+		8D7E87CF2834D03500E0139F /* OrderSuccessView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderSuccessView.swift; sourceTree = "<group>"; };
+		8D7E87D128350A8D00E0139F /* Cart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cart.swift; sourceTree = "<group>"; };
 		8D91C86F283438A000F5DA05 /* AddToBagView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddToBagView.swift; sourceTree = "<group>"; };
 		8DA72DE72833F8E50043CA71 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		8DA72DE92833F9450043CA71 /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
@@ -114,10 +118,18 @@
 			children = (
 				8D7E87C42834BA0C00E0139F /* OrderSummaryView.swift */,
 				8D7E87C82834C83700E0139F /* CartRow.swift */,
-				8D7E87CA2834CB0D00E0139F /* SummaryView.swift */,
 				8D7E87CC2834CCE900E0139F /* DeliveryAddressView.swift */,
+				8D7E87CA2834CB0D00E0139F /* SummaryView.swift */,
 			);
 			path = OrderSummaryView;
+			sourceTree = "<group>";
+		};
+		8D7E87CE2834D01D00E0139F /* OrderSuccessView */ = {
+			isa = PBXGroup;
+			children = (
+				8D7E87CF2834D03500E0139F /* OrderSuccessView.swift */,
+			);
+			path = OrderSuccessView;
 			sourceTree = "<group>";
 		};
 		8DA72DE22833F40B0043CA71 /* Models */ = {
@@ -126,6 +138,7 @@
 				8DA72DE92833F9450043CA71 /* Store.swift */,
 				8DA72DEB2833F94D0043CA71 /* Product.swift */,
 				8DA72DED2833F9560043CA71 /* Order.swift */,
+				8D7E87D128350A8D00E0139F /* Cart.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -133,6 +146,7 @@
 		8DA72DE32833F43C0043CA71 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				8D7E87CE2834D01D00E0139F /* OrderSuccessView */,
 				8D7E87C32834B9E800E0139F /* OrderSummaryView */,
 				8DA72DF12833FB040043CA71 /* StoreAndProductsView */,
 				8DA72DF62833FE480043CA71 /* LoadingView.swift */,
@@ -382,6 +396,7 @@
 				8DBD298328342EE300DC4D4C /* HexColor.swift in Sources */,
 				8DA72DEC2833F94D0043CA71 /* Product.swift in Sources */,
 				8DA72DF32833FB330043CA71 /* StoreAndProductsView.swift in Sources */,
+				8D7E87D228350A8D00E0139F /* Cart.swift in Sources */,
 				8D91C870283438A000F5DA05 /* AddToBagView.swift in Sources */,
 				8D7E87C52834BA0C00E0139F /* OrderSummaryView.swift in Sources */,
 				8DBF0C4E2833DE26008A3191 /* e_marketApp.swift in Sources */,
@@ -389,6 +404,7 @@
 				8DA72DEA2833F9450043CA71 /* Store.swift in Sources */,
 				8DA72DF92834082E0043CA71 /* StoreDetailView.swift in Sources */,
 				8D7E87CB2834CB0D00E0139F /* SummaryView.swift in Sources */,
+				8D7E87D02834D03500E0139F /* OrderSuccessView.swift in Sources */,
 				8D7E87C22834AA2A00E0139F /* CheckboxToggleStyle.swift in Sources */,
 				8DA72DF02833F9A00043CA71 /* APIError.swift in Sources */,
 			);

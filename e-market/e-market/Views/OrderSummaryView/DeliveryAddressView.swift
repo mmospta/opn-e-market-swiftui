@@ -12,8 +12,13 @@ struct DeliveryAddressView: View {
   
     var body: some View {
       VStack(alignment: .leading, spacing: 16) {
-        Text("Delivery Address: \(deliveryAddress)")
+        Text("Delivery Address:")
           .font(.system(size: 16))
+          .fontWeight(.bold)
+          .lineLimit(0)
+          .foregroundColor(.gray)
+        Text("\(deliveryAddress)")
+          .font(.system(size: 14))
           .fontWeight(.bold)
           .lineLimit(0)
           .foregroundColor(.gray)

@@ -7,49 +7,43 @@
 
 import SwiftUI
 
-struct SelectProduct {
-  let id: UUID
-  let product: Product
-  let quantity: Int
-}
-
 struct OrderSummaryView: View {
   @EnvironmentObject var viewModel: OrderSummaryViewModel
-  
-  let selectProduct = [SelectProduct(id: UUID(), product: Product(name: "Latte", price: 50, imageUrl: "https://www.nespresso.com/ncp/res/uploads/recipes/nespresso-recipes-Latte-Art-Tulip.jpg"), quantity: 2),
-                       SelectProduct(id: UUID(), product: Product(name: "Dark Tiramisu Mocha", price: 75, imageUrl: "https://www.nespresso.com/shared_res/mos/free_html/sg/b2b/b2ccoffeerecipes/listing-image/image/dark-tiramisu-mocha.jpg"), quantity: 5)
-  ]
+  @Binding var rootIsActive : Bool
+  var selectedProduct: [SelectedProduct] = []
   
   var body: some View {
-      VStack {
-        Text("Order summary")
-        List {
-          
-          Section {
-            ForEach(selectProduct, id: \.id) { product in
-              CartRow()
-            }
+      List {
+        Section {
+          ForEach(viewModel.selectedProduct, id: \.id) { selectedProduct in
+            CartRow(selectedProduct: selectedProduct)
           }
-          
-          Section {
-            DeliveryAddressView()
-          }
-          
-          Section {
-            SummaryView()
-          }
-          .listRowSeparator(.hidden)
-          
-
         }
-        .listStyle(.inset)
+        
+        Section {
+          DeliveryAddressView()
+        }
+        
+        Section {
+          SummaryView(rootIsActive: $rootIsActive)
+            .listRowBackground(Color.clear)
+        }
+        .buttonStyle(.plain)
+        .listRowSeparator(.hidden)
       }
-  }
+      .buttonStyle(.plain)
+      .listStyle(.plain)
+      .navigationTitle("Order summary")
+      .padding(.vertical)
+      .onAppear {
+        viewModel.selectedProduct = selectedProduct
+      }
+    }
 }
 
 struct OrderSummaryView_Previews: PreviewProvider {
   static var previews: some View {
-    OrderSummaryView()
+    OrderSummaryView(rootIsActive: .constant(false))
       .environmentObject(OrderSummaryViewModel())
   }
 }

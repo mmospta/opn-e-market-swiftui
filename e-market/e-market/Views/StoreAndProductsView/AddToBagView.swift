@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct AddToBagView: View {
+  @EnvironmentObject var viewModel: StoreAndProductsViewModel
+  @Binding var isActive: Bool
+  
     var body: some View {
       HStack {
         Button {
@@ -25,10 +28,10 @@ struct AddToBagView: View {
               RoundedRectangle(cornerRadius: 10)
                 .stroke(Style.Colors.gradientBlack!, lineWidth: 2))
         }
-
         
-        Button {
-          print("add to bag")
+        NavigationLink(isActive: $isActive) {
+          OrderSummaryView(rootIsActive: $isActive, selectedProduct: viewModel.selectedProduct)
+            .environmentObject(OrderSummaryViewModel())
         } label: {
           HStack {
             Text("ADD TO BAG")
@@ -41,6 +44,7 @@ struct AddToBagView: View {
               .fontWeight(.semibold)
           }
         }
+        .disabled(viewModel.isDisableBtn)
         .foregroundColor(Color.white)
         .padding()
         .frame(maxWidth: .infinity)
@@ -52,6 +56,6 @@ struct AddToBagView: View {
 
 struct AddToBagView_Previews: PreviewProvider {
     static var previews: some View {
-        AddToBagView()
+      AddToBagView(isActive: .constant(false))
     }
 }
