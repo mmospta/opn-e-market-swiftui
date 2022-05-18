@@ -8,13 +8,21 @@
 import SwiftUI
 
 struct ProductView: View {
+  @EnvironmentObject var viewModel: StoreAndProductsViewModel
+  @State private var counter: Int = 0
+  @State private var isSelect = false
+  
   let product: Product
   
   var body: some View {
     HStack(spacing: 12) {
-      Image(systemName: "checkmark.square")
-        .resizable()
-        .frame(width: 16, height: 16)
+//      Image("checkmark.square.fill")
+//        .resizable()
+//        .frame(width: 20, height: 20)
+//        .foregroundColor(Style.Colors.grayb)
+      Toggle("", isOn: $isSelect)
+        .labelsHidden()
+        .toggleStyle(CheckboxToggleStyle())
         .foregroundColor(Style.Colors.grayb)
       
       AsyncImage(url: URL(string: product.imageUrl)) { image in
@@ -31,7 +39,7 @@ struct ProductView: View {
         Text(product.name)
           .font(.system(size: 18))
           .fontWeight(.bold)
-          .lineLimit(2)
+          .lineLimit(3)
           .foregroundColor(Style.Colors.textBlack)
         Text("$ \(product.price)")
           .font(.system(size: 16))
@@ -41,23 +49,36 @@ struct ProductView: View {
       
       Spacer()
       
-      HStack {
+      HStack(spacing: 12) {
         Button {
           print("-")
+          if counter > 0 {
+            counter -= 1
+          }
         } label: {
           Image(systemName: "minus.circle.fill")
+            .resizable()
+            .frame(width: 24, height: 24)
             .foregroundColor(Style.Colors.textBrown)
         }
         
-        Text("0")
+        Text("\(counter)")
+          .font(.system(size: 18))
+          .fontWeight(.semibold)
+          .foregroundColor(Style.Colors.gradientGray)
+          .frame(width: 30)
         
         Button {
           print("+")
+          if counter < 100 {
+            counter += 1
+          }
         } label: {
           Image(systemName: "plus.circle.fill")
+            .resizable()
+            .frame(width: 24, height: 24)
             .foregroundColor(Style.Colors.textBrown)
         }
-        
       }
     }
     .padding()

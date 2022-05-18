@@ -21,5 +21,7 @@ struct Style {
     static let textLightGray = Color.init(hex: "#C8C8C8")
     static let textGold = Color.init(hex: "#C9AD96")
     static let textBrown = Color.init(hex: "#BEA084")
+    static let gradientBlack = Color.init(hex: "#1B1B1B")
+    static let gradientGray = Color.init(hex: "#484848")
   }
 }

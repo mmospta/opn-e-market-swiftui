@@ -34,10 +34,12 @@ struct StoreAndProductsView: View {
           ForEach(viewModel.products, id: \.id) { product in
             ProductView(product: product)
           }
+          
+          AddToBagView()
+            .padding()
         }
       }
-      .background(Style.Colors.background)
-      .ignoresSafeArea(.all, edges: [.top, .bottom])
+      .ignoresSafeArea(.all, edges: [.top])
       .onAppear {
         viewModel.getStoreInfo()
         viewModel.getProducts()
@@ -47,6 +49,7 @@ struct StoreAndProductsView: View {
         LoadingView()
       }
     }
+    .background(Style.Colors.background?.edgesIgnoringSafeArea(.all))
   }
 }
 

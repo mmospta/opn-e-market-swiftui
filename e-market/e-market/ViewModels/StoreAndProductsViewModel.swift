@@ -51,4 +51,24 @@ class StoreAndProductsViewModel: ObservableObject {
     return dateFormatter.string(from: date)
   }
   
+  var quantity: Int = 0
+  var counter: Int = 0
+  
+//  func add(id: UUID, quantity:  Int, counter: Int) {
+//    print(id)
+//    if counter < 100 {
+//      feedback.impactOccurred()
+//      counter += 1
+//    }
+//  }
+//  
+//  func minus(id: UUID, quantity: Int, counter: Int) {
+//    print(quantity)
+//    if counter > 0 {
+//      counter -= 1
+//    }
+//  }
+  
+  
+  
 }
